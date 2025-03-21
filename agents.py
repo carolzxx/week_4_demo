@@ -7,7 +7,7 @@ from together import Together
 
 # Get Client
 your_api_key = "9806a2601560024637df1e4acd804862faa67e08637db6598d920b64eebba43e"
-client = Together(api_key=your_api_key)
+together = Together(api_key=your_api_key)
 
 
 def prompt_llm(prompt, show_cost=False):
@@ -26,7 +26,7 @@ def prompt_llm(prompt, show_cost=False):
         print(f"Estimated cost for {model}: ${cost:.10f}\n")
 
     # Make the API call
-    response = client.chat.completions.create(
+    response = together.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
     )
@@ -35,7 +35,7 @@ def prompt_llm(prompt, show_cost=False):
 
 class SummarizerAgent:
     def __init__(self):
-        self.client = Together(api_key=your_api_key)
+        self.together = Together(api_key=your_api_key)  # ✅ Correct
 
     def process(self, content):
         prompt = """SYSTEM: You are an expert text summarizer. 
@@ -59,7 +59,7 @@ class SummarizerAgent:
 
 class InsightAgent:
     def __init__(self):
-        self.client = Together(api_key=your_api_key)
+        self.together = Together(api_key=your_api_key)  # ✅ Correct
 
     def process(self, summary_files):
         # Read all summary files
@@ -101,7 +101,7 @@ class InsightAgent:
 
 class RecommenderAgent:
     def __init__(self):
-        self.client = Together(api_key=your_api_key)
+        self.together = Together(api_key=your_api_key)  # ✅ Correct
 
     def process(self, insights, summaries, user_goal, persona=""):
         prompt = """SYSTEM: You are an expert business consultant who provides actionable recommendations.
